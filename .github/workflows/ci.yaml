@@ -14,6 +14,13 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      with:
+        projectBaseDir: src
+        args: >
+          -Dsonar.organization=java-multi-stage
+          -Dsonar.projectKey=java-multi-stage_java-multi-stage
+          -Dsonar.python.coverage.reportPaths=coverage.xml
+          -Dsonar.verbose=true
     - name: build image
       run: docker build -t webapp .
 
