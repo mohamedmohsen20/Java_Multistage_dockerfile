@@ -21,6 +21,11 @@ jobs:
           -Dsonar.projectKey=java-multi-stage_java-multi-stage
           -Dsonar.python.coverage.reportPaths=coverage.xml
           -Dsonar.verbose=true
+    - name: Run Snyk to check for vulnerabilities
+      uses: snyk/actions/node@master
+      env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
     - name: build image
       run: docker build -t webapp .
 
